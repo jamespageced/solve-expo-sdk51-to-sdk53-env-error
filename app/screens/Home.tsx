@@ -3,7 +3,7 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import { MOBILE_ENV } from '@env';
 
-export default function App() {
+export default function Home(): ReactComponent {
   return (
     <View style={styles.container}>
       <Text>Running Environment: {MOBILE_ENV}</Text>
