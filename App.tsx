@@ -1,6 +1,16 @@
 import React from 'react';
-import { Home } from '@app/screens';
+import { Dimensions } from 'react-native';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { NavigationConductor } from '@app/navigation';
+import { ToastInit } from '@app/components';
+
+const windowDimensions = Dimensions.get('window');
 
 export default function App(): ReactComponent {
-  return <Home />;
+  return (
+    <SafeAreaProvider style={{ maxWidth: windowDimensions.width, maxHeight: windowDimensions.height }}>
+      <NavigationConductor />
+      <ToastInit />
+    </SafeAreaProvider>
+  );
 }

@@ -1,0 +1,1 @@
+export { useScanditStore } from './Scandit';
