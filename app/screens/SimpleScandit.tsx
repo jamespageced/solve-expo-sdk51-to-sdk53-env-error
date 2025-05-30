@@ -44,6 +44,7 @@ export default function SimpleScan(): JSX.Element {
   const [barcodeCaptureMode, setBarcodeCaptureMode] = useState<BarcodeCapture | null>(null);
   const [isBarcodeCaptureEnabled, setIsBarcodeCaptureEnabled] = useState(false);
   const [cameraState, setCameraState] = useState<FrameSourceState | null>(null);
+  const [localScanResults, setLocalScanResults] = useState('');
 
   // Due to a React Native issue with firing the AppState 'change' event on iOS, we want to avoid triggering
   // a startCapture/stopCapture on the scanner twice in a row. We work around this by keeping track of the
@@ -110,7 +111,7 @@ export default function SimpleScan(): JSX.Element {
         const symbology = new SymbologyDescription(barcode.symbology);
 
         // add scan results to the store
-        setSimpleScanditResults(`${barcode.data}`);
+        setLocalScanResults(`${barcode.data}`);
       }
     };
 
@@ -209,6 +210,12 @@ export default function SimpleScan(): JSX.Element {
       navigation.goBack();
     }
   }, [isBarcodeCaptureEnabled]);
+
+  useEffect(() => {
+    if (isFocused && !!localScanResults) {
+      setSimpleScanditResults(localScanResults);
+    }
+  }, [localScanResults]);
 
   useEffect(() => {
     // after updating scan results
