@@ -12,7 +12,7 @@ export default function StackScreens(Stack: NavigationStack): ReactComponent {
       <Stack.Screen
         name={screens.modalHamburgerMenu.route}
         component={ModalHamburgerMenu}
-        options={{ presentation: 'transparentModal' }}
+        options={{ presentation: 'modal' }}
       />
     </Stack.Group>
   );
